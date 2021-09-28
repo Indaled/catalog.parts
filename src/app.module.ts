@@ -10,11 +10,16 @@ import { AuthModule } from './auth/auth.module';
 import { PostsModule } from './posts/posts.module';
 import { FilesModule } from './files/files.module';
 import {Post} from "./posts/posts.model";
+import {ServeStaticModule} from "@nestjs/serve-static";
+import * as path from 'path';
 
 @Module({
     controllers: [],
     providers: [],
     imports: [
+        ServeStaticModule.forRoot({
+          rootPath: path.resolve(__dirname, 'client')
+        }),
         ConfigModule.forRoot({
            envFilePath: `./config/${process.env.NODE_ENV}/.env`
         }),
